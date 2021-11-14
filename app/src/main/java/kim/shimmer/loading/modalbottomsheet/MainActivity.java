@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IBottomSheetAction {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +27,12 @@ public class MainActivity extends AppCompatActivity {
         mBottton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomSheetFragment blankFragment = new BottomSheetFragment();
-                blankFragment.show(getSupportFragmentManager(),blankFragment.getTag());
+                BottomSheetFragment blankFragment = new BottomSheetFragment(MainActivity.this);
+                blankFragment.show(getSupportFragmentManager(), blankFragment.getTag());
             }
         });
     }
+
     private void showBottomSheetDialog() {
 
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Copy is Clicked ", Toast.LENGTH_LONG).show();
+                copy();
                 bottomSheetDialog.dismiss();
             }
         });
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Share is Clicked", Toast.LENGTH_LONG).show();
+                share();
                 bottomSheetDialog.dismiss();
             }
         });
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Upload is Clicked", Toast.LENGTH_LONG).show();
+                upload();
                 bottomSheetDialog.dismiss();
             }
         });
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Download is Clicked", Toast.LENGTH_LONG).show();
+                download();
                 bottomSheetDialog.dismiss();
             }
         });
@@ -80,9 +81,34 @@ public class MainActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Delete is Clicked", Toast.LENGTH_LONG).show();
+                delete();
                 bottomSheetDialog.dismiss();
             }
         });
+    }
+
+    @Override
+    public void download() {
+        Toast.makeText(getApplicationContext(), "Download is Clicked", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void upload() {
+        Toast.makeText(getApplicationContext(), "Upload is Clicked", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void copy() {
+        Toast.makeText(getApplicationContext(), "Copy is Clicked ", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void share() {
+        Toast.makeText(getApplicationContext(), "Share is Clicked", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void delete() {
+        Toast.makeText(getApplicationContext(), "Delete is Clicked", Toast.LENGTH_LONG).show();
     }
 }
